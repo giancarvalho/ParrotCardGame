@@ -1,0 +1,40 @@
+.website {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #eef9bf;
+  font-family: "Roboto", sans-serif;
+}
+
+.game-title {
+  font-weight: 700;
+  color: #75b79e;
+  font-size: 56px;
+  margin: 40px auto;
+}
+
+main {
+  height: 100%;
+  padding: 0 5%;
+}
+
+ul {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+li {
+  display: flex;
+  height: 200px;
+  width: 150px;
+  background-color: #a7e9af;
+  border-radius: 8px;
+  margin: 20px;
+  border: 1px solid #99cea8;
+}
+
+li img {
+  margin: auto auto;
+  height: 120px;
+}
