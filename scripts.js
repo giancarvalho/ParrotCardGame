@@ -55,4 +55,30 @@ function buildGame(deck) {
   }
 }
 
+function flipCard(backcard) {
+  nTurns++;
+  card = backcard.parentNode;
+  card.classList.add("active");
+  isTwoFlipped();
+}
+
+function isTwoFlipped() {
+  let flippedCards = document.querySelectorAll(".active");
+  console.log(flippedCards);
+
+  if (flippedCards.length >= 2) {
+    let parrotOne = flippedCards[0].querySelector(".frontface > img");
+    let parrotTwo = flippedCards[1].querySelector(".frontface > img");
+
+    if (parrotOne.getAttribute("src") === parrotTwo.getAttribute("src")) {
+      flippedCards[0].classList.add("pair-found");
+      flippedCards[1].classList.add("pair-found");
+      unflipCards(flippedCards);
+      win();
+    } else {
+      setTimeout(unflipCards, 1000, flippedCards);
+    }
+  }
+}
+
 startGame();
