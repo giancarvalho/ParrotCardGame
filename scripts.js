@@ -81,4 +81,20 @@ function isTwoFlipped() {
   }
 }
 
+function unflipCards(flippedCards) {
+  for (let i = 0; i < flippedCards.length; i++) {
+    flippedCards[i].classList.remove("active");
+  }
+}
+
+function win() {
+  let cardsFound = document.querySelectorAll(".pair-found");
+  console.log(cardsFound.length, numberOfCards);
+  if (Number(cardsFound.length) === numberOfCards) {
+    setTimeout(function () {
+      alert(`Parabéns, você encontrou todas as cartas em ${nTurns} jogadas!`),
+        playAgain();
+    }, 500);
+  }
+}
 startGame();
