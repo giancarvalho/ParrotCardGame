@@ -26,4 +26,33 @@ function startGame() {
   }
 }
 
+function buildDeck(deckSorted) {
+  let fullDeck = [];
+  for (let i = 0; i < numberOfCards / 2; i++) {
+    fullDeck.push(deckSorted[i]);
+    fullDeck.push(deckSorted[i]);
+  }
+
+  fullDeck = fullDeck.sort(comparador);
+  console.log(fullDeck);
+  buildGame(fullDeck);
+}
+
+function buildGame(deck) {
+  listTag.innerHTML = "";
+  for (let i = 0; i < deck.length; i++) {
+    console.log(i);
+    listTag.innerHTML += `<li>
+            <div class="card">
+              <div class="backface" onclick="flipCard(this)">
+                <img src="assets/front.png" alt="" />
+              </div>
+              <div class="frontface">
+                ${deck[i]}
+              </div>
+            </div>
+          </li>`;
+  }
+}
+
 startGame();
