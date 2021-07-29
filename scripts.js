@@ -97,4 +97,23 @@ function win() {
     }, 500);
   }
 }
+
+function playAgain() {
+  let anotherGame = prompt(
+    "Gostaria de jogar novamente? Digite: 'sim' ou 'nao' "
+  );
+
+  if (anotherGame === "sim") {
+    startGame();
+  } else if (anotherGame === "nao") {
+    alert("Okay! Obrigado por visitar Parrot Card Game.");
+  } else {
+    playAgain();
+  }
+}
+
+function comparador() {
+  return Math.random() - 0.5;
+}
+
 startGame();
