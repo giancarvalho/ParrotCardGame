@@ -15,7 +15,7 @@ function startGame() {
   nTurns = 0;
   numberOfCards = Number(
     prompt(
-      "Com quantas cartas deseja jogar? Escolha um número par entre 4 e 16"
+      "Com quantas cartas deseja jogar? Escolha um número par entre 4 e 14"
     )
   );
   if (numberOfCards < 4 || numberOfCards > 14 || numberOfCards % 2 !== 0) {
@@ -56,17 +56,18 @@ function buildGame(deck) {
 }
 
 function flipCard(backcard) {
-  nTurns++;
-  card = backcard.parentNode;
-  card.classList.add("active");
-  isTwoFlipped();
+  let flippedCards = document.querySelectorAll(".active");
+  if (flippedCards.length < 3) {
+    nTurns++;
+    card = backcard.parentNode;
+    card.classList.add("active");
+    isTwoFlipped();
+  }
 }
 
 function isTwoFlipped() {
   let flippedCards = document.querySelectorAll(".active");
-  console.log(flippedCards);
-
-  if (flippedCards.length >= 2) {
+  if (flippedCards.length === 2) {
     let parrotOne = flippedCards[0].querySelector(".frontface > img");
     let parrotTwo = flippedCards[1].querySelector(".frontface > img");
 

@@ -1,5 +1,6 @@
 .website {
   display: flex;
+  height: 100%;
   flex-direction: column;
   background-color: #eef9bf;
   font-family: "Roboto", sans-serif;
