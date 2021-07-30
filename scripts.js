@@ -1,6 +1,9 @@
-let listTag = document.querySelector("ul");
+const listTag = document.querySelector("ul");
+const stopwatchHTML = document.querySelector(".stopwatch");
 let numberOfCards;
 let nTurns;
+let stopwatchID;
+let sec;
 let parrotCards = [
   `<img src="assets/bobrossparrot.gif" alt="" />`,
   `<img src="assets/explodyparrot.gif" alt="" />`,
@@ -10,8 +13,13 @@ let parrotCards = [
   `<img src="assets/tripletsparrot.gif" alt="" />`,
   `<img src="assets/unicornparrot.gif" alt="" />`,
 ];
+
 // verifies if number of card input is valid
+
 function startGame() {
+  sec = 0;
+  stopwatchID = setInterval(beginWatch, 1000);
+  4;
   nTurns = 0;
   numberOfCards = Number(
     prompt(
@@ -26,6 +34,11 @@ function startGame() {
   }
 }
 
+function beginWatch() {
+  sec++;
+  stopwatchHTML.innerHTML = `<p>${sec}</p>`;
+}
+
 function buildDeck(deckSorted) {
   let fullDeck = [];
   for (let i = 0; i < numberOfCards / 2; i++) {
@@ -34,14 +47,12 @@ function buildDeck(deckSorted) {
   }
 
   fullDeck = fullDeck.sort(comparador);
-  console.log(fullDeck);
   buildGame(fullDeck);
 }
 
 function buildGame(deck) {
   listTag.innerHTML = "";
   for (let i = 0; i < deck.length; i++) {
-    console.log(i);
     listTag.innerHTML += `<li>
             <div class="card">
               <div class="backface" onclick="flipCard(this)">
@@ -90,11 +101,13 @@ function unflipCards(flippedCards) {
 
 function win() {
   let cardsFound = document.querySelectorAll(".pair-found");
-  console.log(cardsFound.length, numberOfCards);
   if (Number(cardsFound.length) === numberOfCards) {
     setTimeout(function () {
-      alert(`Parabéns, você encontrou todas as cartas em ${nTurns} jogadas!`),
-        playAgain();
+      alert(
+        `Parabéns, você encontrou todas as cartas! Número de Jogadas: ${nTurns} Tempo: ${sec} !`
+      ),
+        clearInterval(stopwatchID);
+      playAgain();
     }, 500);
   }
 }

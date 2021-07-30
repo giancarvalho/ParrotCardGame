@@ -1,9 +1,19 @@
+body {
+  background-color: #eef9bf;
+}
+
 .website {
   display: flex;
-  height: 100%;
+  height: auto;
   flex-direction: column;
-  background-color: #eef9bf;
   font-family: "Roboto", sans-serif;
+}
+
+header {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .game-title {
@@ -13,9 +23,23 @@
   margin: 40px auto;
 }
 
+.stopwatch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 50px;
+  width: 120px;
+  background-color: #99cea8;
+  right: 12vw;
+  font-size: 40px;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
 main {
   height: 100%;
-  padding: 0 5%;
+  padding: 0 12vw 5vh 12vw;
 }
 
 ul {
