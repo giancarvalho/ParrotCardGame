@@ -18,8 +18,6 @@ let parrotCards = [
 
 function startGame() {
   sec = 0;
-  stopwatchID = setInterval(beginWatch, 1000);
-  4;
   nTurns = 0;
   numberOfCards = Number(
     prompt(
@@ -64,6 +62,7 @@ function buildGame(deck) {
             </div>
           </li>`;
   }
+  stopwatchID = setInterval(beginWatch, 1000);
 }
 
 function flipCard(backcard) {
@@ -104,7 +103,7 @@ function win() {
   if (Number(cardsFound.length) === numberOfCards) {
     setTimeout(function () {
       alert(
-        `Parabéns, você encontrou todas as cartas! Número de Jogadas: ${nTurns} Tempo: ${sec} !`
+        `Parabéns, você encontrou todas as cartas em ${sec} segundos! Número de Jogadas: ${nTurns}`
       ),
         clearInterval(stopwatchID);
       playAgain();

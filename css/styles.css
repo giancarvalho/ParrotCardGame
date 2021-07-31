@@ -90,3 +90,18 @@ li {
 .frontface {
   transform: rotateY(-180deg);
 }
+
+@media (max-width: 952px) {
+  .game-title {
+    font-size: 10vw;
+  }
+
+  .stopwatch {
+    position: fixed;
+    font-size: 25px;
+    width: 65px;
+    bottom: 5vh;
+    right: 3vw;
+    z-index: 1;
+  }
+}
