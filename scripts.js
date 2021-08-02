@@ -4,6 +4,7 @@ let numberOfCards;
 let nTurns;
 let stopwatchID;
 let sec;
+rankingRecord = [];
 let parrotCards = [
   `<img src="assets/bobrossparrot.gif" alt="" />`,
   `<img src="assets/explodyparrot.gif" alt="" />`,
@@ -15,6 +16,7 @@ let parrotCards = [
 ];
 
 // verifies if number of card input is valid
+startGame();
 
 function startGame() {
   sec = 0;
@@ -106,7 +108,8 @@ function win() {
         `Parabéns, você encontrou todas as cartas em ${sec} segundos! Número de Jogadas: ${nTurns}`
       ),
         clearInterval(stopwatchID);
-      playAgain();
+      insertScore();
+      setTimeout(playAgain, 1000);
     }, 500);
   }
 }
@@ -129,4 +132,85 @@ function comparador() {
   return Math.random() - 0.5;
 }
 
-startGame();
+function insertScore() {
+  const rankingList = document.querySelector(".ranking-list > ul");
+  createPlayer();
+  rankingRecord = orderList(rankingRecord);
+  rankingList.innerHTML = "";
+  for (let i = 0; rankingRecord.length > i; i++) {
+    rankingList.innerHTML += `<li>
+    <span class="player-name">${rankingRecord[i].playerName}</span>
+    <span class="n-of-cards">${rankingRecord[i].nCards}</span>
+    <span class="time">${rankingRecord[i].time}</span>
+    <span class="score">${rankingRecord[i].score}</span>
+  </li>`;
+  }
+}
+
+function createPlayer() {
+  const playerName = prompt("Qual seu nome?");
+  let player = {
+    playerName,
+    nCards: numberOfCards,
+    score: Math.round(calculateScore()),
+    time: sec,
+  };
+
+  previousTurn = isPlayerInRecord(playerName);
+  if (previousTurn !== false) {
+    if (player.score > previousTurn.score) {
+      alert(
+        `Parabéns! Você bateu seu antigo recorde por ${
+          player.score - previousTurn.score
+        } pontos`
+      );
+      previousTurn.nCards = player.nCards;
+      previousTurn.score = player.score;
+      previousTurn.time = player.time;
+    } else {
+      alert(
+        `Você fez ${player.score} nessa rodada, ${
+          previousTurn.score - player.score
+        } pontos a menos que sua melhor rodada`
+      );
+    }
+  } else {
+    rankingRecord.push(player);
+  }
+}
+
+function isPlayerInRecord(playerName) {
+  if (rankingRecord.length > 0) {
+    for (let i = 0; rankingRecord.length > i; i++) {
+      if (playerName === rankingRecord[i].playerName) {
+        return rankingRecord[i];
+      }
+    }
+  }
+  return false;
+}
+
+function orderList(list) {
+  if (list.length > 1) {
+    for (let i = 1; i < list.length; i++) {
+      for (let j = 0; j < i; j++)
+        if (list[i].score > list[j].score) {
+          let x = list[i];
+          list[i] = list[j];
+          list[j] = x;
+        }
+    }
+  }
+
+  return list;
+}
+
+function calculateScore() {
+  numberOfCards;
+  sec;
+  nTurns;
+
+  let score = numberOfCards * 500 * (numberOfCards / nTurns) - sec * 2;
+
+  return score;
+}

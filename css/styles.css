@@ -39,17 +39,17 @@ header {
 
 main {
   height: 100%;
-  padding: 0 12vw 5vh 12vw;
+  padding: 0 3vw 5vh 20vw;
 }
 
-ul {
+main ul {
   height: 100%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-li {
+main li {
   height: 200px;
   width: 150px;
   margin: 20px;
@@ -91,7 +91,55 @@ li {
   transform: rotateY(-180deg);
 }
 
-@media (max-width: 952px) {
+.ranking {
+  position: fixed;
+  height: auto;
+  width: 220px;
+  left: 20px;
+  top: 160px;
+  background-color: white;
+  font-size: 12px;
+  border: 2px solid #99cea8;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.ranking p {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+  color: #77b255;
+}
+
+.ranking-list {
+  height: 100%;
+}
+
+.ranking-list li:nth-child(2n) {
+  background-color: #eefcee;
+}
+
+.ranking-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px;
+}
+
+.player-name {
+  width: 35px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1071px) {
+  main {
+    padding: 0 10vw 5vh 10vw;
+  }
+  .ranking {
+    display: none;
+  }
+
   .game-title {
     font-size: 10vw;
   }
