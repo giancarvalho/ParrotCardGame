@@ -20,7 +20,6 @@
         <div class="game-title">Parrot Card Game</div>
         <div class="stopwatch"></div>
       </header>
-      <!-- beginning main -->
       <main>
         <ul>
           <!-- card list goes here-->
@@ -34,15 +33,27 @@
           </p>
         </div>
         <div class="ranking-list">
-          <ul>
-          </ul>
+          <ul></ul>
         </div>
       </div>
-      <!-- end main -->
+
+      <!-- mobile button -->
+      <button class="ranking-button" onclick="showRanking()">
+        <ion-icon name="medal-outline"></ion-icon>
+      </button>
+      <div class="overlay"></div>
     </div>
     <!-- end website -->
 
-    <!-- script file -->
+    <!-- script files -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
     <script src="scripts.js"></script>
   </body>
 </html>

@@ -42,6 +42,7 @@ main {
   padding: 0 3vw 5vh 20vw;
 }
 
+/* card styles  */
 main ul {
   height: 100%;
   display: flex;
@@ -91,14 +92,15 @@ main li {
   transform: rotateY(-180deg);
 }
 
+/* ranking style */
 .ranking {
   position: fixed;
   height: auto;
-  width: 220px;
+  width: 250px;
   left: 20px;
   top: 160px;
   background-color: white;
-  font-size: 12px;
+  font-size: 15px;
   border: 2px solid #99cea8;
   border-radius: 5px;
   box-sizing: border-box;
@@ -132,12 +134,26 @@ main li {
   text-overflow: ellipsis;
 }
 
+.ranking-button {
+  display: none;
+}
+
+/* adaptation to mobile */
 @media (max-width: 1071px) {
   main {
     padding: 0 10vw 5vh 10vw;
   }
+
   .ranking {
     display: none;
+  }
+
+  .ranking.active {
+    display: initial;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
   }
 
   .game-title {
@@ -148,8 +164,35 @@ main li {
     position: fixed;
     font-size: 25px;
     width: 65px;
-    bottom: 5vh;
-    right: 3vw;
+    bottom: 3vh;
+    left: 3vw;
     z-index: 1;
+  }
+
+  .ranking-button {
+    height: 50px;
+    width: 65px;
+    display: initial;
+    position: fixed;
+    font-size: 25px;
+    bottom: 3vh;
+    right: 3vw;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    background-color: #99cea8;
+    z-index: 1;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+
+  .overlay.active {
+    display: initial;
   }
 }

@@ -1,3 +1,5 @@
+// global variables
+
 const listTag = document.querySelector("ul");
 const stopwatchHTML = document.querySelector(".stopwatch");
 let numberOfCards;
@@ -34,11 +36,13 @@ function startGame() {
   }
 }
 
+// begin stopwatch
 function beginWatch() {
   sec++;
   stopwatchHTML.innerHTML = `<p>${sec}</p>`;
 }
 
+// build deck of the turn
 function buildDeck(deckSorted) {
   let fullDeck = [];
   for (let i = 0; i < numberOfCards / 2; i++) {
@@ -50,6 +54,7 @@ function buildDeck(deckSorted) {
   buildGame(fullDeck);
 }
 
+// insert built deck into the html
 function buildGame(deck) {
   listTag.innerHTML = "";
   for (let i = 0; i < deck.length; i++) {
@@ -67,6 +72,7 @@ function buildGame(deck) {
   stopwatchID = setInterval(beginWatch, 1000);
 }
 
+// flip card and count the turns
 function flipCard(backcard) {
   let flippedCards = document.querySelectorAll(".active");
   if (flippedCards.length < 3) {
@@ -77,6 +83,7 @@ function flipCard(backcard) {
   }
 }
 
+// verifies if two cards are flipped and if card pair was found
 function isTwoFlipped() {
   let flippedCards = document.querySelectorAll(".active");
   if (flippedCards.length === 2) {
@@ -100,6 +107,7 @@ function unflipCards(flippedCards) {
   }
 }
 
+// verifies if all pairs have been found
 function win() {
   let cardsFound = document.querySelectorAll(".pair-found");
   if (Number(cardsFound.length) === numberOfCards) {
@@ -114,6 +122,7 @@ function win() {
   }
 }
 
+// prompts the player if they want to play another game
 function playAgain() {
   let anotherGame = prompt(
     "Gostaria de jogar novamente? Digite: 'sim' ou 'nao' "
@@ -128,10 +137,7 @@ function playAgain() {
   }
 }
 
-function comparador() {
-  return Math.random() - 0.5;
-}
-
+// insert score into the ranking list
 function insertScore() {
   const rankingList = document.querySelector(".ranking-list > ul");
   createPlayer();
@@ -147,6 +153,7 @@ function insertScore() {
   }
 }
 
+// create a new player or update record of a previous one, in case a new record was achieved
 function createPlayer() {
   const playerName = prompt("Qual seu nome?");
   let player = {
@@ -179,6 +186,7 @@ function createPlayer() {
   }
 }
 
+// verifies if player is in the record
 function isPlayerInRecord(playerName) {
   if (rankingRecord.length > 0) {
     for (let i = 0; rankingRecord.length > i; i++) {
@@ -190,6 +198,7 @@ function isPlayerInRecord(playerName) {
   return false;
 }
 
+// order record list in descending order based on player score
 function orderList(list) {
   if (list.length > 1) {
     for (let i = 1; i < list.length; i++) {
@@ -213,4 +222,17 @@ function calculateScore() {
   let score = numberOfCards * 500 * (numberOfCards / nTurns) - sec * 2;
 
   return score;
+}
+
+// toggles mobile ranking modal
+function showRanking() {
+  const ranking = document.querySelector(".ranking");
+  const overlay = document.querySelector(".overlay");
+
+  ranking.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
+function comparador() {
+  return Math.random() - 0.5;
 }
